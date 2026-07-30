@@ -255,20 +255,20 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.image(
-        "outputs/confusion_matrix.png",
+        "confusion_matrix.png",
         caption="Confusion Matrix",
         use_container_width=True
     )
 
 with col2:
     st.image(
-        "outputs/roc_curve.png",
+        "roc_curve.png",
         caption="ROC Curve",
         use_container_width=True
     )
 
 st.image(
-    "outputs/feature_importance.png",
+    "feature_importance.png",
     caption="Feature Importance",
     use_container_width=True
 )
