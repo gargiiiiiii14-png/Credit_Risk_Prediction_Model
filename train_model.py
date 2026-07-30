@@ -65,7 +65,7 @@ print("=" * 60)
 # Load Dataset
 # ============================================================
 
-DATA_PATH = "data/german_credit_data.csv"
+DATA_PATH = "german_credit_data.csv"
 
 df = pd.read_csv(DATA_PATH)
 
