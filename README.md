@@ -168,16 +168,6 @@ streamlit run app.py
 
 ---
 
-## 📷 Application Preview
-
-You can add screenshots of:
-
-* Home Page
-* Prediction Result
-* Probability Bar Chart
-* Model Evaluation Graphs
-
----
 
 ## 👩‍💻 Author
 
@@ -185,8 +175,3 @@ You can add screenshots of:
 
 Machine Learning Project developed using Python, Scikit-learn, and Streamlit.
 
----
-
-## 📄 License
-
-This project is developed for educational and learning purposes.
