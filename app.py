@@ -8,7 +8,7 @@ from PIL import Image
 # Load trained model
 # -----------------------------
 
-model = joblib.load("models/best_model.pkl")
+model = joblib.load("best_model.pkl")
 
 # -----------------------------
 # Page Configuration
