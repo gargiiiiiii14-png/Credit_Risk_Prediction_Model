@@ -7,8 +7,12 @@ from PIL import Image
 # -----------------------------
 # Load trained model
 # -----------------------------
+import os
+import sys
+import subprocess
+import joblib
 
-model = joblib.load("models/best_model.pkl")
+MODEL_PATH = "models/best_model.pkl"
 
 # -----------------------------
 # Page Configuration
