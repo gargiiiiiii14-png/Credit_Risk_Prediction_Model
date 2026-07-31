@@ -1,73 +1,164 @@
-import streamlit as st
-import pandas as pd
-import joblib
-import matplotlib.pyplot as plt
-from PIL import Image
-
-# -----------------------------
-# Load trained model
-# -----------------------------
 import os
-import sys
-import subprocess
 import joblib
+import pandas as pd
+import streamlit as st
+import plotly.graph_objects as go
 
-MODEL_PATH = "models/best_model.pkl"
-
-# -----------------------------
-# Page Configuration
-# -----------------------------
+# ---------------------------------------------------
+# PAGE CONFIG
+# ---------------------------------------------------
 
 st.set_page_config(
     page_title="Credit Risk Prediction",
+    page_icon="🏦",
     layout="wide"
 )
 
-# -----------------------------
-# Sidebar
-# -----------------------------
+# ---------------------------------------------------
+# PATHS
+# ---------------------------------------------------
 
-st.sidebar.title("🏦 Credit Risk Prediction")
+BASE_DIR = os.path.dirname(__file__)
 
-st.sidebar.markdown("---")
+MODEL_PATH = os.path.join(BASE_DIR, "models", "best_model.pkl")
 
-st.sidebar.subheader("Project Information")
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
 
-st.sidebar.write("**Dataset:** German Credit Data")
+# ---------------------------------------------------
+# LOAD MODEL
+# ---------------------------------------------------
 
-st.sidebar.write("**Machine Learning Models:**")
-st.sidebar.write("- Logistic Regression")
-st.sidebar.write("- Decision Tree")
-st.sidebar.write("- Random Forest")
+@st.cache_resource
+def load_model():
+    return joblib.load(MODEL_PATH)
 
-st.sidebar.markdown("---")
+model = load_model()
 
-st.sidebar.subheader("Final Model")
+# ---------------------------------------------------
+# THEME
+# ---------------------------------------------------
 
-st.sidebar.success("Random Forest Classifier")
+st.markdown("""
+<style>
 
-st.sidebar.markdown("---")
+.stApp{
+    background:#0F172A;
+    color:#F8FAFC;
+}
 
-st.sidebar.write(
-    "Developed using Python, Scikit-learn and Streamlit."
+.card{
+    background:#1E293B;
+    border-left:4px solid #B91C1C;
+    padding:18px;
+    border-radius:14px;
+    margin-bottom:15px;
+    color:#F8FAFC;
+}
+
+h1{
+    color:#FFFFFF;
+    font-weight:800;
+    text-align:center;
+}
+
+h2{
+    color:#FFFFFF;
+}
+
+h3{
+    color:#F8FAFC;
+}
+
+.subtitle{
+    color:#E2E8F0;
+    text-align:center;
+    font-size:18px;
+}
+
+.card{
+    background:#1E293B;
+    padding:18px;
+    border-radius:14px;
+    border-left:4px solid #B91C1C;
+    margin-bottom:15px;
+}
+
+.stButton button{
+    width:100%;
+    background:#B91C1C;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-weight:600;
+    height:45px;
+}
+
+.stButton button:hover{
+    background:#991B1B;
+}
+
+/* Brighter labels */
+label{
+    color:#F8FAFC !important;
+    font-weight:600;
+}
+
+/* Better metric cards */
+div[data-testid="metric-container"]{
+    background:#1E293B;
+    border-radius:12px;
+    padding:12px;
+    border:1px solid #334155;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ---------------------------------------------------
+# HEADER
+# ---------------------------------------------------
+
+st.markdown("""
+<h1>🏦 Credit Risk Prediction Dashboard</h1>
+
+<p class="subtitle">
+Intelligent Loan Risk Assessment using Machine Learning
+</p>
+""", unsafe_allow_html=True)
+
+c1, c2, c3, c4 = st.columns(4)
+
+with c1:
+    st.metric(
+        "🤖 Model",
+        "Random Forest"
+    )
+
+with c2:
+    st.metric(
+        "📊 Dataset",
+        "1000",
+        "Records"
+    )
+
+with c3:
+    st.metric(
+        "🎯 Accuracy",
+        "71.0%"
+    )
+
+with c4:
+    st.metric(
+        "📈 ROC-AUC",
+        "65.6%"
+    )
 )
 
-st.title("🏦 Credit Risk Prediction Dashboard")
-st.caption("Developed using Python, Scikit-learn and Streamlit")
+# ---------------------------------------------------
+# APPLICANT INFORMATION
+# ---------------------------------------------------
 
-st.write(
-    """
-    This application predicts whether a loan applicant is a **Good Risk**
-    or **Bad Risk** using a Machine Learning model trained on the German
-    Credit Dataset.
-    """
-)
-
-st.markdown("---")
-
-# -----------------------------
-# User Inputs
-# -----------------------------
+st.subheader("Applicant Information")
 
 col1, col2 = st.columns(2)
 
@@ -81,13 +172,8 @@ with col1:
     )
 
     sex = st.selectbox(
-        "Sex",
+        "Gender",
         ["male", "female"]
-    )
-
-    job = st.selectbox(
-        "Job",
-        [0, 1, 2, 3]
     )
 
     housing = st.selectbox(
@@ -95,11 +181,23 @@ with col1:
         ["own", "rent", "free"]
     )
 
-with col2:
-
     saving = st.selectbox(
         "Saving Account",
         ["little", "moderate", "quite rich", "rich"]
+    )
+
+    amount = st.number_input(
+        "Credit Amount",
+        min_value=0,
+        value=3000,
+        step=100
+    )
+
+with col2:
+
+    job = st.selectbox(
+        "Job Level",
+        [0, 1, 2, 3]
     )
 
     checking = st.selectbox(
@@ -107,172 +205,307 @@ with col2:
         ["little", "moderate", "rich"]
     )
 
-    amount = st.number_input(
-        "Credit Amount",
-        value=3000
-    )
-
     duration = st.number_input(
         "Duration (Months)",
+        min_value=1,
         value=12
     )
 
-purpose = st.selectbox(
-    "Purpose",
-    [
-        "car",
-        "radio/TV",
-        "education",
-        "furniture/equipment",
-        "business",
-        "domestic appliances",
-        "repairs",
-        "vacation/others"
-    ]
-)
+    purpose = st.selectbox(
+        "Purpose",
+        [
+            "car",
+            "radio/TV",
+            "education",
+            "furniture/equipment",
+            "business",
+            "domestic appliances",
+            "repairs",
+            "vacation/others"
+        ]
+    )
 
-st.markdown("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
-# -----------------------------
-# Prediction
-# -----------------------------
-# -----------------------------
-# Prediction
-# -----------------------------
+predict = st.button("Predict Credit Risk")
 
-if st.button("Predict Credit Risk"):
+# ---------------------------------------------------
+# PREDICTION
+# ---------------------------------------------------
 
-    input_data = pd.DataFrame({
+if predict:
 
-        "Age": [age],
-        "Sex": [sex],
-        "Job": [job],
-        "Housing": [housing],
-        "Saving accounts": [saving],
-        "Checking account": [checking],
-        "Credit amount": [amount],
-        "Duration": [duration],
-        "Purpose": [purpose]
+    input_df = pd.DataFrame({
+
+        "Age":[age],
+        "Sex":[sex],
+        "Job":[job],
+        "Housing":[housing],
+        "Saving accounts":[saving],
+        "Checking account":[checking],
+        "Credit amount":[amount],
+        "Duration":[duration],
+        "Purpose":[purpose]
 
     })
 
-    prediction = model.predict(input_data)[0]
-    probability = model.predict_proba(input_data)[0]
+    prediction = model.predict(input_df)[0]
 
-    good_probability = probability[1] * 100
-    bad_probability = probability[0] * 100
+    probability = model.predict_proba(input_df)[0]
+
+    bad_prob = probability[0] * 100
+    good_prob = probability[1] * 100
+
+    confidence = max(good_prob, bad_prob)
 
     st.markdown("---")
+
+    # -------------------------
+    # Result
+    # -------------------------
 
     if prediction == 1:
-        st.success("✅ Prediction: GOOD CREDIT RISK")
+
+        st.success("✅ GOOD CREDIT RISK")
+
+        risk = "🟢 Low Risk"
+
     else:
-        st.error("❌ Prediction: BAD CREDIT RISK")
 
-    col1, col2 = st.columns(2)
+        st.error("❌ BAD CREDIT RISK")
 
-    with col1:
+        risk = "🔴 High Risk"
+
+    # -------------------------
+    # Dashboard
+    # -------------------------
+
+    left, right = st.columns([1,1])
+
+    with left:
+
         st.metric(
-            "Good Risk Probability",
-            f"{good_probability:.2f}%"
+            "Confidence",
+            f"{confidence:.1f}%"
         )
 
-    with col2:
         st.metric(
-            "Bad Risk Probability",
-            f"{bad_probability:.2f}%"
+            "Risk Level",
+            risk
         )
 
-    st.markdown("### 📊 Prediction Probability Chart")
+        st.progress(confidence/100)
 
-    fig, ax = plt.subplots(figsize=(3.5, 2))
+        fig = go.Figure(
 
-    categories = ["Good Risk", "Bad Risk"]
-    values = [good_probability, bad_probability]
+            data=[
 
-    bars = ax.bar(
-    categories,
-    values,
-    color=["green", "red"]
-)
+                go.Pie(
 
-    ax.set_ylim(0, 100)
-    ax.set_ylabel("Probability (%)")
-    ax.grid(axis="y", linestyle="--", alpha=0.5)
-    ax.set_title("Credit Risk Prediction Probability")
+                    labels=[
+                        "Good Risk",
+                        "Bad Risk"
+                    ],
 
-    for bar in bars:
-        height = bar.get_height()
-        ax.text(
-            bar.get_x() + bar.get_width() / 2,
-            height + 2,
-            f"{height:.1f}%",
-            ha="center"
+                    values=[
+                        good_prob,
+                        bad_prob
+                    ],
+
+                    hole=0.65,
+
+                    marker=dict(
+
+                        colors=[
+                            "#16A34A",
+                            "#B91C1C"
+                        ]
+
+                    )
+
+                )
+
+            ]
+
         )
 
-    st.pyplot(fig, use_container_width=False)
+        fig.update_layout(
 
-    st.markdown("---")
+            template="plotly_dark",
 
-    if good_probability >= 80:
-        st.success("🟢 Risk Level: Low Risk")
-    elif good_probability >= 60:
-        st.warning("🟡 Risk Level: Medium Risk")
-    else:
-        st.error("🔴 Risk Level: High Risk")
+            paper_bgcolor="#0F172A",
 
-        st.markdown("---")
-st.subheader("📋 Applicant Summary")
+            font_color="white",
 
-prediction_text = "GOOD CREDIT RISK" if prediction == 1 else "BAD CREDIT RISK"
+            margin=dict(
+                l=20,
+                r=20,
+                t=20,
+                b=20
+            ),
 
-summary = pd.DataFrame({
-    "Field": [
-        "Age",
-        "Sex",
-        "Housing",
-        "Credit Amount",
-        "Duration (Months)",
-        "Purpose",
-        "Prediction",
-        "Confidence"
-    ],
-    "Value": [
-        age,
-        sex.title(),
-        housing.title(),
-        amount,
-        duration,
-        purpose.title(),
-        prediction_text,
-        f"{max(good_probability, bad_probability):.2f}%"
-    ]
-})
+            height=360,
 
-st.table(summary)
+            showlegend=True
 
-   
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    with right:
+
+        st.markdown("### Applicant Summary")
+
+        summary = pd.DataFrame({
+
+            "Field":[
+
+                "Age",
+                "Gender",
+                "Housing",
+                "Job",
+                "Amount",
+                "Duration",
+                "Purpose"
+
+            ],
+
+            "Value":[
+
+                age,
+                sex.title(),
+                housing.title(),
+                job,
+                f"₹ {amount:,}",
+                f"{duration} Months",
+                purpose.title()
+
+            ]
+
+        })
+
+        st.dataframe(
+
+            summary,
+
+            hide_index=True,
+
+            use_container_width=True
+
+        )
+
+        st.info(
+
+            f"""
+Prediction Confidence : **{confidence:.1f}%**
+
+Prediction Generated Successfully.
+"""
+
+        )
+
+       # ---------------------------------------------------
+# MODEL PERFORMANCE
+# ---------------------------------------------------
+
+st.markdown("---")
 
 st.header("📊 Model Performance")
+
+cm_path = os.path.join(OUTPUT_DIR, "confusion_matrix.png")
+roc_path = os.path.join(OUTPUT_DIR, "roc_curve.png")
+feature_path = os.path.join(OUTPUT_DIR, "feature_importance.png")
+
+# -------------------------------
+# Top Row
+# -------------------------------
 
 col1, col2 = st.columns(2)
 
 with col1:
-    st.image(
-        "confusion_matrix.png",
-        caption="Confusion Matrix",
-        use_container_width=True
-    )
+
+    st.subheader("Confusion Matrix")
+
+    if os.path.exists(cm_path):
+        st.image(cm_path, width=420)
+    else:
+        st.warning("Image not found.")
 
 with col2:
-    st.image(
-        "roc_curve.png",
-        caption="ROC Curve",
-        use_container_width=True
-    )
 
-st.image(
-    "feature_importance.png",
-    caption="Feature Importance",
-    use_container_width=True
+    st.subheader("ROC Curve")
+
+    if os.path.exists(roc_path):
+        st.image(roc_path, width=420)
+    else:
+        st.warning("Image not found.")
+
+# -------------------------------
+# Bottom Row
+# -------------------------------
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+st.subheader("Feature Importance")
+
+left, center, right = st.columns([1,2,1])
+
+with center:
+
+    if os.path.exists(feature_path):
+        st.image(feature_path, width=650)
+    else:
+        st.warning("Image not found.")
+
+# ---------------------------------------------------
+# ABOUT
+# ---------------------------------------------------
+
+st.markdown("---")
+
+st.header("About this Project")
+
+st.write("""
+This application predicts whether a loan applicant is likely to be a
+**Good Credit Risk** or **Bad Credit Risk** using a Random Forest
+Classifier trained on the German Credit Dataset.
+
+The project demonstrates a complete machine learning workflow:
+
+• Data Preprocessing
+
+• Feature Engineering
+
+• Model Training
+
+• Hyperparameter Tuning
+
+• Model Evaluation
+
+• Interactive Dashboard Deployment
+""")
+
+# ---------------------------------------------------
+# MODEL METRICS
+# ---------------------------------------------------
+
+m1, m2, m3, m4 = st.columns(4)
+
+m1.metric("Accuracy", "71.0%")
+m2.metric("Precision", "72.3%")
+m3.metric("Recall", "95.0%")
+m4.metric("ROC-AUC", "65.6%")
+
+# ---------------------------------------------------
+# FOOTER
+# ---------------------------------------------------
+
+st.markdown("---")
+
+st.caption(
+    "Credit Risk Prediction Dashboard • Random Forest • German Credit Dataset"
 )
+
