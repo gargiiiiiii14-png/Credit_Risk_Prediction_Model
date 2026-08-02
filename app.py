@@ -35,8 +35,7 @@ def load_model():
 model = load_model()
 
 with st.sidebar:
-
-   l
+   
 
     st.title("🏦 Credit Risk")
 
