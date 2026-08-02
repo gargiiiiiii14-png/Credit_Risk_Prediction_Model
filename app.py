@@ -464,13 +464,50 @@ with center:
 # ABOUT
 # ---------------------------------------------------
 
+# ---------------------------------------------------
+# ABOUT
+# ---------------------------------------------------
+
 st.markdown("""
-### 📌 About the Project
+<div style="
+background-color:#1F2937;
+padding:25px;
+border-radius:15px;
+border-left:6px solid #FF4B4B;
+margin-bottom:25px;
+">
 
-This dashboard leverages a trained **Random Forest Machine Learning model** to assess the creditworthiness of loan applicants. By analyzing applicant financial and demographic information, it predicts whether an applicant is likely to be a **Good Risk** or **Bad Risk**, helping support informed lending decisions.
+<h3 style="color:white; margin-top:0;">
+🚀 About This Project
+</h3>
 
-The application also provides confidence scores, model performance metrics, and interactive visualizations to enhance transparency and interpretability.
-""")
+<p style="color:#EAEAEA; font-size:16px; line-height:1.7;">
+
+This project demonstrates an <b>end-to-end Machine Learning workflow</b> for
+credit risk assessment using the <b>German Credit Dataset</b>.
+
+The application analyzes applicant financial and demographic information
+to predict whether a customer is likely to be a
+<b style="color:#5BE37D;">Good Risk</b> or
+<b style="color:#FF6B6B;">Bad Risk</b>
+through a trained <b>Random Forest Classifier</b>.
+
+</p>
+
+<hr style="border:1px solid #374151;">
+
+<p style="color:#D9D9D9; font-size:15px;">
+
+✅ Data Preprocessing & Feature Engineering<br>
+✅ Random Forest Classification Model<br>
+✅ Real-Time Risk Prediction<br>
+✅ Interactive Performance Dashboard<br>
+✅ Model Explainability & Visualizations
+
+</p>
+
+</div>
+""", unsafe_allow_html=True)
 # ---------------------------------------------------
 # MODEL METRICS
 # ---------------------------------------------------
