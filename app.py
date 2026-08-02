@@ -104,7 +104,32 @@ div[data-testid="metric-container"]{
     padding:12px;
     border:1px solid #334155;
 }
+/* ===========================
+   CUSTOM DASHBOARD CARDS
+=========================== */
 
+.dashboard-card{
+    background:#1E293B;
+    padding:22px;
+    border-radius:18px;
+    border:1px solid #334155;
+    text-align:center;
+    transition:all 0.35s ease;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    border:1px solid #EF4444;
+
+    box-shadow:0 12px 28px rgba(239,68,68,0.35);
+
+    background:#263548;
+
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -212,31 +237,43 @@ Intelligent Loan Risk Assessment using Machine Learning
 
 c1, c2, c3, c4 = st.columns(4)
 
-with c1:
-    st.metric(
-        "🤖 Model",
-        "Random Forest"
-    )
+cards = [
 
-with c2:
-    st.metric(
-        "📊 Dataset",
-        "1000",
-        "Records"
-    )
+    ("🤖", "Model", "Random Forest"),
+    ("📊", "Dataset", "1000 Records"),
+    ("🎯", "Accuracy", "71.0%"),
+    ("📈", "ROC-AUC", "65.6%")
 
-with c3:
-    st.metric(
-        "🎯 Accuracy",
-        "71.0%"
-    )
+]
 
-with c4:
-    st.metric(
-        "📈 ROC-AUC",
-        "65.6%"
-    )
+for col, (icon, title, value) in zip([c1, c2, c3, c4], cards):
 
+    with col:
+
+        st.markdown(f"""
+        <div class="dashboard-card">
+
+            <div style="font-size:34px;">
+                {icon}
+            </div>
+
+            <div style="
+            color:#94A3B8;
+            font-size:15px;
+            margin-top:10px;">
+                {title}
+            </div>
+
+            <div style="
+            color:white;
+            font-size:22px;
+            font-weight:700;
+            margin-top:8px;">
+                {value}
+            </div>
+
+        </div>
+        """, unsafe_allow_html=True)
 
 # ---------------------------------------------------
 # APPLICANT INFORMATION
@@ -632,13 +669,7 @@ with center:
     else:
         st.warning("Image not found.")
 
-# ---------------------------------------------------
-# ABOUT
-# ---------------------------------------------------
 
-# ---------------------------------------------------
-# ABOUT
-# ---------------------------------------------------
 
 # ---------------------------------------------------
 # ABOUT PROJECT
