@@ -112,33 +112,58 @@ div[data-testid="metric-container"]{
 # HEADER
 # ---------------------------------------------------
 
-# ---------------------------------------------------
-# HEADER
-# ---------------------------------------------------
+
 
 # ---------------------------------------------------
 # HEADER
 # ---------------------------------------------------
 
-st.title("🏦 Credit Risk Prediction Dashboard")
+st.markdown("""
+<style>
+.hero-box{
+    background: linear-gradient(90deg,#1F2937,#111827);
+    padding:25px;
+    border-radius:18px;
+    border-left:6px solid #FF4B4B;
+    margin-bottom:25px;
+}
+</style>
+""", unsafe_allow_html=True)
 
-st.markdown("---")
+st.markdown('<div class="hero-box">', unsafe_allow_html=True)
+
+st.markdown(
+    "<h1 style='text-align:center; color:white; margin-bottom:20px;'>🏦 Credit Risk Prediction Dashboard</h1>",
+    unsafe_allow_html=True
+)
 
 b1, b2, b3, b4 = st.columns(4)
 
 with b1:
-    st.info("🤖 **Random Forest**")
+    st.markdown(
+        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>🤖 Random Forest</div>",
+        unsafe_allow_html=True,
+    )
 
 with b2:
-    st.info("📊 **German Credit Dataset**")
+    st.markdown(
+        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>📊 German Credit Dataset</div>",
+        unsafe_allow_html=True,
+    )
 
 with b3:
-    st.info("🎯 **71% Accuracy**")
+    st.markdown(
+        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>🎯 71% Accuracy</div>",
+        unsafe_allow_html=True,
+    )
 
 with b4:
-    st.info("🚀 **Live Demo**")
+    st.markdown(
+        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>🚀 Live Demo</div>",
+        unsafe_allow_html=True,
+    )
 
-st.markdown("")
+st.markdown("</div>", unsafe_allow_html=True)
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
