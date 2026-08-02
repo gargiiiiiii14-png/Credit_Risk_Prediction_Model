@@ -439,76 +439,70 @@ margin-top:-10px;
 left, right = st.columns([1,1])
 
 with left:
-st.metric(
-    "Good Risk Probability",
-    f"{good_prob:.1f}%"
-)
 
-st.metric(
-    "Bad Risk Probability",
-    f"{bad_prob:.1f}%"
-)
+    st.metric(
+        "Good Risk Probability",
+        f"{good_prob:.1f}%"
+    )
 
-        st.progress(confidence/100)
+    st.metric(
+        "Bad Risk Probability",
+        f"{bad_prob:.1f}%"
+    )
 
-        fig = go.Figure(
+    st.progress(confidence / 100)
 
-            data=[
+    fig = go.Figure(
 
-                go.Pie(
+        data=[
 
-                    labels=[
-                        "Good Risk",
-                        "Bad Risk"
-                    ],
+            go.Pie(
 
-                    values=[
-                        good_prob,
-                        bad_prob
-                    ],
+                labels=[
+                    "Good Risk",
+                    "Bad Risk"
+                ],
 
-                    hole=0.65,
+                values=[
+                    good_prob,
+                    bad_prob
+                ],
 
-                    marker=dict(
+                hole=0.65,
 
-                        colors=[
-                            "#16A34A",
-                            "#B91C1C"
-                        ]
+                marker=dict(
 
-                    )
+                    colors=[
+                        "#16A34A",
+                        "#B91C1C"
+                    ]
 
                 )
 
-            ]
+            )
 
-        )
+        ]
 
-        fig.update_layout(
+    )
 
-            template="plotly_dark",
+    fig.update_layout(
+        template="plotly_dark",
+        paper_bgcolor="#0F172A",
+        font_color="white",
+        margin=dict(
+            l=20,
+            r=20,
+            t=20,
+            b=20
+        ),
+        height=360,
+        showlegend=True
+    )
 
-            paper_bgcolor="#0F172A",
-
-            font_color="white",
-
-            margin=dict(
-                l=20,
-                r=20,
-                t=20,
-                b=20
-            ),
-
-            height=360,
-
-            showlegend=True
-
-        )
-
-        st.plotly_chart(
-            fig,
-            use_container_width=True
-        )
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
     with right:
 
