@@ -113,14 +113,6 @@ div[data-testid="metric-container"]{
 # ---------------------------------------------------
 
 
-
-# ---------------------------------------------------
-# HEADER
-# ---------------------------------------------------
-# ---------------------------------------------------
-# HERO BANNER
-# ---------------------------------------------------
-
 st.markdown("""
 <style>
 
@@ -249,8 +241,32 @@ with c4:
 # ---------------------------------------------------
 # APPLICANT INFORMATION
 # ---------------------------------------------------
+st.markdown("""
+<div style="
+background:#1E293B;
+padding:20px;
+border-radius:15px;
+border-left:5px solid #DC2626;
+margin-bottom:20px;
+">
 
-st.subheader("Applicant Information")
+<h2 style="
+color:white;
+margin-bottom:5px;
+">
+👤 Applicant Information
+</h2>
+
+<p style="
+color:#CBD5E1;
+margin-top:0;
+font-size:15px;
+">
+Provide the applicant's financial and demographic details below.
+</p>
+
+</div>
+""", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
