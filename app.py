@@ -36,7 +36,7 @@ model = load_model()
 
 with st.sidebar:
 
-    st.image("images/logo.png", width=120)   # Optional
+   l
 
     st.title("🏦 Credit Risk")
 
