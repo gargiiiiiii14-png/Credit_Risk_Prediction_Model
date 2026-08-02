@@ -464,30 +464,13 @@ with center:
 # ABOUT
 # ---------------------------------------------------
 
-st.markdown("---")
+st.markdown("""
+### 📌 About the Project
 
-st.header("About this Project")
+This dashboard leverages a trained **Random Forest Machine Learning model** to assess the creditworthiness of loan applicants. By analyzing applicant financial and demographic information, it predicts whether an applicant is likely to be a **Good Risk** or **Bad Risk**, helping support informed lending decisions.
 
-st.write("""
-This application predicts whether a loan applicant is likely to be a
-**Good Credit Risk** or **Bad Credit Risk** using a Random Forest
-Classifier trained on the German Credit Dataset.
-
-The project demonstrates a complete machine learning workflow:
-
-• Data Preprocessing
-
-• Feature Engineering
-
-• Model Training
-
-• Hyperparameter Tuning
-
-• Model Evaluation
-
-• Interactive Dashboard Deployment
+The application also provides confidence scores, model performance metrics, and interactive visualizations to enhance transparency and interpretability.
 """)
-
 # ---------------------------------------------------
 # MODEL METRICS
 # ---------------------------------------------------
