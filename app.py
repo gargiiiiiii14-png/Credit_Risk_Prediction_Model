@@ -119,14 +119,80 @@ div[data-testid="metric-container"]{
 # ---------------------------------------------------
 
 st.markdown("""
-<h1>🏦 Credit Risk Prediction Dashboard</h1>
+<div style="
+background: linear-gradient(90deg, #1F2937, #111827);
+padding:30px;
+border-radius:18px;
+border-left:6px solid #FF4B4B;
+margin-bottom:25px;
+">
 
-<p class="subtitle">
-Intelligent Loan Risk Assessment using Machine Learning
+<h1 style="
+color:white;
+margin-bottom:8px;
+font-size:42px;
+font-weight:700;
+">
+🏦 Credit Risk Prediction Dashboard
+</h1>
+
+<p style="
+color:#D1D5DB;
+font-size:18px;
+margin-bottom:15px;
+">
+AI-Powered Loan Risk Assessment using Machine Learning
 </p>
-""", unsafe_allow_html=True)
 
-c1, c2, c3, c4 = st.columns(4)
+<hr style="border:1px solid #374151; margin:18px 0;">
+
+<div style="
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:12px;
+">
+
+<span style="
+background:#374151;
+padding:8px 16px;
+border-radius:25px;
+color:white;
+font-size:14px;">
+🤖 Random Forest
+</span>
+
+<span style="
+background:#374151;
+padding:8px 16px;
+border-radius:25px;
+color:white;
+font-size:14px;">
+📊 German Credit Dataset
+</span>
+
+<span style="
+background:#374151;
+padding:8px 16px;
+border-radius:25px;
+color:white;
+font-size:14px;">
+⚡ Real-Time Prediction
+</span>
+
+<span style="
+background:#374151;
+padding:8px 16px;
+border-radius:25px;
+color:white;
+font-size:14px;">
+🚀 Live Deployment
+</span>
+
+</div>
+
+</div>
+""", unsafe_allow_html=True)
 
 with c1:
     st.metric(
