@@ -374,19 +374,64 @@ if predict:
     # -------------------------
     # Result
     # -------------------------
+if prediction == 1:
 
-    if prediction == 1:
+    result_color = "#16A34A"
+    result_icon = "🟢"
+    result_text = "GOOD CREDIT RISK"
 
-        st.success("✅ GOOD CREDIT RISK")
+else:
 
-        risk = "🟢 Low Risk"
+    result_color = "#DC2626"
+    result_icon = "🔴"
+    result_text = "BAD CREDIT RISK"
 
-    else:
+st.markdown(f"""
+<div style="
+background:#1E293B;
+padding:25px;
+border-radius:16px;
+border-left:6px solid {result_color};
+margin-bottom:25px;
+text-align:center;
+">
 
-        st.error("❌ BAD CREDIT RISK")
+<h2 style="color:white;margin-bottom:10px;">
+Prediction Result
+</h2>
 
-        risk = "🔴 High Risk"
+<h1 style="
+color:{result_color};
+margin:0;
+font-size:38px;
+">
 
+{result_icon} {result_text}
+
+</h1>
+
+<p style="
+font-size:20px;
+color:#CBD5E1;
+margin-top:15px;
+">
+
+Confidence Score
+
+</p>
+
+<h1 style="
+color:white;
+font-size:48px;
+margin-top:-10px;
+">
+
+{confidence:.1f}%
+
+</h1>
+
+</div>
+""", unsafe_allow_html=True)
     # -------------------------
     # Dashboard
     # -------------------------
@@ -394,16 +439,15 @@ if predict:
     left, right = st.columns([1,1])
 
     with left:
+st.metric(
+    "Good Risk Probability",
+    f"{good_prob:.1f}%"
+)
 
-        st.metric(
-            "Confidence",
-            f"{confidence:.1f}%"
-        )
-
-        st.metric(
-            "Risk Level",
-            risk
-        )
+st.metric(
+    "Bad Risk Probability",
+    f"{bad_prob:.1f}%"
+)
 
         st.progress(confidence/100)
 
@@ -468,7 +512,7 @@ if predict:
 
     with right:
 
-        st.markdown("### Applicant Summary")
+        st.subheader("📋 Applicant Summary")
 
         summary = pd.DataFrame({
 
@@ -508,16 +552,15 @@ if predict:
 
         )
 
-        st.info(
+    st.success(
+f"""
+### Prediction Completed
 
-            f"""
-Prediction Confidence : **{confidence:f}%**
-
-Prediction Generated Successfully.
+- **Confidence:** {confidence:.1f}%
+- **Model:** Random Forest
+- **Status:** Prediction Generated Successfully
 """
-
-        )
-
+)
        # ---------------------------------------------------
 # MODEL PERFORMANCE
 # ---------------------------------------------------
