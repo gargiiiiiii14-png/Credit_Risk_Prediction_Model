@@ -438,7 +438,7 @@ margin-top:-10px;
 
 left, right = st.columns([1,1])
 
-    with left:
+with left:
 st.metric(
     "Good Risk Probability",
     f"{good_prob:.1f}%"
