@@ -468,43 +468,121 @@ with center:
 # ABOUT
 # ---------------------------------------------------
 
+# ---------------------------------------------------
+# ABOUT PROJECT
+# ---------------------------------------------------
+
 st.markdown("""
 <div style="
 background-color:#1F2937;
-padding:25px;
+padding:30px;
 border-radius:15px;
 border-left:6px solid #FF4B4B;
-margin-bottom:25px;
+margin-bottom:30px;
+text-align:center;
 ">
 
-<h3 style="color:white; margin-top:0;">
+<h2 style="color:white; margin-bottom:15px;">
 🚀 About This Project
-</h3>
+</h2>
 
-<p style="color:#EAEAEA; font-size:16px; line-height:1.7;">
+<p style="
+color:#EAEAEA;
+font-size:16px;
+line-height:1.8;
+max-width:850px;
+margin:auto;
+">
 
-This project demonstrates an <b>end-to-end Machine Learning workflow</b> for
-credit risk assessment using the <b>German Credit Dataset</b>.
+This dashboard demonstrates an <b>end-to-end Machine Learning workflow</b>
+for predicting <b>credit risk</b> using the <b>German Credit Dataset</b>.
 
-The application analyzes applicant financial and demographic information
-to predict whether a customer is likely to be a
-<b style="color:#5BE37D;">Good Risk</b> or
-<b style="color:#FF6B6B;">Bad Risk</b>
-through a trained <b>Random Forest Classifier</b>.
+The application analyzes an applicant's financial and demographic information
+to determine whether they are likely to be a
+<b style="color:#5BE37D;">Good Risk</b> or a
+<b style="color:#FF6B6B;">Bad Risk</b> using a trained
+<b>Random Forest Classifier</b>.
 
-</p>
-
-<hr style="border:1px solid #374151;">
-
-<p style="color:#D9D9D9; font-size:15px;">
-
-✅ Data Preprocessing & Feature Engineering<br>
-✅ Random Forest Classification Model<br>
-✅ Real-Time Risk Prediction<br>
-✅ Interactive Performance Dashboard<br>
-✅ Model Explainability & Visualizations
+The dashboard also provides confidence scores, applicant summaries,
+and model performance visualizations to support transparent and informed
+credit risk assessment.
 
 </p>
+
+<hr style="
+border:1px solid #374151;
+margin:25px 0;
+">
+
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:12px;
+">
+
+<span style="
+background:#374151;
+padding:9px 18px;
+border-radius:25px;
+color:white;
+font-size:14px;
+font-weight:500;">
+🧹 Data Cleaning
+</span>
+
+<span style="
+background:#374151;
+padding:9px 18px;
+border-radius:25px;
+color:white;
+font-size:14px;
+font-weight:500;">
+⚙️ Feature Engineering
+</span>
+
+<span style="
+background:#374151;
+padding:9px 18px;
+border-radius:25px;
+color:white;
+font-size:14px;
+font-weight:500;">
+🌳 Random Forest
+</span>
+
+<span style="
+background:#374151;
+padding:9px 18px;
+border-radius:25px;
+color:white;
+font-size:14px;
+font-weight:500;">
+⚡ Real-Time Prediction
+</span>
+
+<span style="
+background:#374151;
+padding:9px 18px;
+border-radius:25px;
+color:white;
+font-size:14px;
+font-weight:500;">
+📊 Interactive Dashboard
+</span>
+
+<span style="
+background:#374151;
+padding:9px 18px;
+border-radius:25px;
+color:white;
+font-size:14px;
+font-weight:500;">
+🚀 Live Deployment
+</span>
+
+</div>
 
 </div>
 """, unsafe_allow_html=True)
