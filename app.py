@@ -121,15 +121,16 @@ div[data-testid="metric-container"]{
 st.markdown("""
 <div style="
 background: linear-gradient(90deg, #1F2937, #111827);
-padding:30px;
+padding:35px;
 border-radius:18px;
 border-left:6px solid #FF4B4B;
 margin-bottom:25px;
+text-align:center;
 ">
 
 <h1 style="
 color:white;
-margin-bottom:8px;
+margin-bottom:10px;
 font-size:42px;
 font-weight:700;
 ">
@@ -139,59 +140,69 @@ font-weight:700;
 <p style="
 color:#D1D5DB;
 font-size:18px;
-margin-bottom:15px;
+margin-bottom:20px;
 ">
 AI-Powered Loan Risk Assessment using Machine Learning
 </p>
 
-<hr style="border:1px solid #374151; margin:18px 0;">
+<hr style="
+border:1px solid #374151;
+margin:20px auto;
+width:70%;
+">
 
 <div style="
 display:flex;
 justify-content:center;
+align-items:center;
 flex-wrap:wrap;
 gap:12px;
 ">
 
 <span style="
 background:#374151;
-padding:8px 16px;
+padding:9px 18px;
 border-radius:25px;
 color:white;
-font-size:14px;">
+font-size:14px;
+font-weight:500;">
 🤖 Random Forest
 </span>
 
 <span style="
 background:#374151;
-padding:8px 16px;
+padding:9px 18px;
 border-radius:25px;
 color:white;
-font-size:14px;">
+font-size:14px;
+font-weight:500;">
 📊 German Credit Dataset
 </span>
 
 <span style="
 background:#374151;
-padding:8px 16px;
+padding:9px 18px;
 border-radius:25px;
 color:white;
-font-size:14px;">
+font-size:14px;
+font-weight:500;">
 ⚡ Real-Time Prediction
 </span>
 
 <span style="
 background:#374151;
-padding:8px 16px;
+padding:9px 18px;
 border-radius:25px;
 color:white;
-font-size:14px;">
+font-size:14px;
+font-weight:500;">
 🚀 Live Deployment
 </span>
 
 </div>
 
 </div>
+""", unsafe_allow_html=True)
 """, unsafe_allow_html=True)
 
 c1, c2, c3, c4 = st.columns(4)
