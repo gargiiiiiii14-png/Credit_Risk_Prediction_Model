@@ -436,7 +436,7 @@ margin-top:-10px;
     # Dashboard
     # -------------------------
 
-    left, right = st.columns([1,1])
+left, right = st.columns([1,1])
 
     with left:
 st.metric(
