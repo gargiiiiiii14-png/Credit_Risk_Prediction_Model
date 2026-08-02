@@ -445,29 +445,29 @@ if predict:
             f"{bad_prob:.1f}%"
         )
 
-     bar_color = "#16A34A" if prediction == 1 else "#DC2626"
+        bar_color = "#16A34A" if prediction == 1 else "#DC2626"
 
-st.markdown(f"""
-<div style="
-width:100%;
-background:#374151;
-border-radius:10px;
-height:14px;
-overflow:hidden;
-margin:15px 0 20px 0;
-">
+        st.markdown(f"""
+        <div style="
+        width:100%;
+        background:#374151;
+        border-radius:10px;
+        height:14px;
+        overflow:hidden;
+        margin:15px 0 20px 0;
+        ">
 
-<div style="
-width:{confidence:.1f}%;
-background:{bar_color};
-height:100%;
-border-radius:10px;
-transition:0.5s;
-">
-</div>
+        <div style="
+        width:{confidence:.1f}%;
+        background:{bar_color};
+        height:100%;
+        border-radius:10px;
+        transition:0.5s;
+        ">
+        </div>
 
-</div>
-""", unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
 
         fig = go.Figure(
 
