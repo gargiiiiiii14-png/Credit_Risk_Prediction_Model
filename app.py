@@ -335,10 +335,6 @@ with col2:
 
 st.markdown("###")
 
-predict = st.button(
-    "🔍 Predict Credit Risk",
-    use_container_width=True
-)
 
 # ---------------------------------------------------
 # PREDICTION
