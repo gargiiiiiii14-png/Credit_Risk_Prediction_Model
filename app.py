@@ -333,9 +333,12 @@ with col2:
         ]
     )
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("###")
 
-predict = st.button("Predict Credit Risk")
+predict = st.button(
+    "🔍 Predict Credit Risk",
+    use_container_width=True
+)
 
 # ---------------------------------------------------
 # PREDICTION
