@@ -411,20 +411,19 @@ if predict:
     confidence = max(good_prob, bad_prob)
 
     if prediction == 1:
-
         result_color = "#16A34A"
         result_icon = "🟢"
         result_text = "GOOD CREDIT RISK"
-
     else:
-
         result_color = "#DC2626"
         result_icon = "🔴"
         result_text = "BAD CREDIT RISK"
 
-    # ---------------------------------------------------
-    # RESULT CARD
-    # ---------------------------------------------------
+    st.markdown("---")
+
+    # ======================================
+    # Prediction Card
+    # ======================================
 
     st.markdown(f"""
     <div style="
@@ -432,7 +431,7 @@ if predict:
     padding:25px;
     border-radius:16px;
     border-left:6px solid {result_color};
-    margin-bottom:25px;
+    margin-bottom:30px;
     text-align:center;
     ">
 
@@ -442,8 +441,8 @@ if predict:
 
     <h1 style="
     color:{result_color};
+    font-size:38px;
     margin:0;
-    font-size:36px;
     ">
     {result_icon} {result_text}
     </h1>
@@ -451,15 +450,15 @@ if predict:
     <p style="
     color:#CBD5E1;
     font-size:18px;
-    margin-top:18px;
+    margin-top:15px;
     ">
     Confidence Score
     </p>
 
     <h1 style="
     color:white;
-    font-size:46px;
-    margin-top:-10px;
+    font-size:48px;
+    margin-top:-5px;
     ">
     {confidence:.1f}%
     </h1>
@@ -467,11 +466,15 @@ if predict:
     </div>
     """, unsafe_allow_html=True)
 
-    # ---------------------------------------------------
-    # DASHBOARD
-    # ---------------------------------------------------
+    # ======================================
+    # Two Column Layout
+    # ======================================
 
     left, right = st.columns([1, 1])
+
+    # ======================================
+    # LEFT COLUMN
+    # ======================================
 
     with left:
 
@@ -502,7 +505,6 @@ if predict:
         background:{bar_color};
         height:100%;
         border-radius:10px;
-        transition:0.5s;
         ">
         </div>
 
@@ -515,25 +517,14 @@ if predict:
 
                 go.Pie(
 
-                    labels=[
-                        "Good Risk",
-                        "Bad Risk"
-                    ],
+                    labels=["Good Risk", "Bad Risk"],
 
-                    values=[
-                        good_prob,
-                        bad_prob
-                    ],
+                    values=[good_prob, bad_prob],
 
                     hole=0.65,
 
                     marker=dict(
-
-                        colors=[
-                            "#16A34A",
-                            "#B91C1C"
-                        ]
-
+                        colors=["#16A34A", "#B91C1C"]
                     )
 
                 )
@@ -570,49 +561,44 @@ if predict:
             use_container_width=True
         )
 
-with right:
+    # ======================================
+    # RIGHT COLUMN
+    # ======================================
 
-    st.markdown("""
-    <h2 style="
-    color:white;
-    margin-bottom:20px;
-    ">
-    📋 Applicant Summary
-    </h2>
-    """, unsafe_allow_html=True)
+    with right:
 
-    fields = [
+        st.markdown("## 📋 Applicant Summary")
 
-        ("👤 Age", age),
-        ("🚻 Gender", sex.title()),
-        ("🏠 Housing", housing.title()),
-        ("💼 Job Level", job),
-        ("💳 Credit Amount", f"₹ {amount:,}"),
-        ("📅 Duration", f"{duration} Months"),
-        ("🎯 Purpose", purpose.title())
+        fields = [
 
-    ]
+            ("👤 Age", age),
+            ("🚻 Gender", sex.title()),
+            ("🏠 Housing", housing.title()),
+            ("💼 Job Level", job),
+            ("💳 Credit Amount", f"₹ {amount:,}"),
+            ("📅 Duration", f"{duration} Months"),
+            ("🎯 Purpose", purpose.title())
 
-    for label, value in fields:
+        ]
 
-        st.markdown(f"""
-        <div style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
+        for label, value in fields:
 
-        background:#1E293B;
+            st.markdown(f"""
+            <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
 
-        padding:14px 18px;
+            background:#1E293B;
 
-        border-radius:12px;
+            padding:14px 18px;
 
-        margin-bottom:12px;
+            border-radius:12px;
 
-        border:1px solid #334155;
+            margin-bottom:12px;
 
-        transition:0.3s;
-        ">
+            border:1px solid #334155;
+            ">
 
             <span style="
             color:#CBD5E1;
@@ -623,49 +609,46 @@ with right:
 
             <span style="
             color:white;
-            font-weight:700;
             font-size:16px;
+            font-weight:700;
             ">
             {value}
             </span>
 
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        st.markdown(f"""
+        <div style="
+        background:linear-gradient(90deg,#14532D,#166534);
+        padding:22px;
+        border-radius:15px;
+        border-left:5px solid #22C55E;
+        ">
+
+        <h3 style="
+        color:#4ADE80;
+        margin-top:0;
+        ">
+        Prediction Details
+        </h3>
+
+        <p style="color:white;">
+        <b>Confidence:</b> {confidence:.1f}%
+        </p>
+
+        <p style="color:white;">
+        <b>Model:</b> Random Forest
+        </p>
+
+        <p style="color:white;margin-bottom:0;">
+        Prediction generated successfully.
+        </p>
+
         </div>
         """, unsafe_allow_html=True)
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    st.markdown(f"""
-    <div style="
-    background:linear-gradient(90deg,#14532D,#166534);
-
-    padding:22px;
-
-    border-radius:15px;
-
-    border-left:5px solid #22C55E;
-    ">
-
-    <h3 style="
-    color:#4ADE80;
-    margin-top:0;
-    ">
-    Prediction Details
-    </h3>
-
-    <p style="color:white;margin-bottom:8px;">
-    <b>Confidence:</b> {confidence:.1f}%
-    </p>
-
-    <p style="color:white;margin-bottom:8px;">
-    <b>Model:</b> Random Forest
-    </p>
-
-    <p style="color:white;margin:0;">
-    Prediction generated successfully.
-    </p>
-
-    </div>
-    """, unsafe_allow_html=True)
        # ---------------------------------------------------
 # MODEL PERFORMANCE
 # ---------------------------------------------------
