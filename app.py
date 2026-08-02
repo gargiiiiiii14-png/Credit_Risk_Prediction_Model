@@ -515,7 +515,7 @@ if predict:
 
     <h1 style="
     color:white;
-    font-size:48px;
+    font-size:36px;
     margin-top:-5px;
     ">
     {confidence:.1f}%
