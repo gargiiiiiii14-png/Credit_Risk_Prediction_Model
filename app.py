@@ -479,7 +479,7 @@ if predict:
         st.info(
 
             f"""
-Prediction Confidence : **{confidence:.1f}%**
+Prediction Confidence : **{confidence:f}%**
 
 Prediction Generated Successfully.
 """
