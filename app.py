@@ -570,55 +570,102 @@ if predict:
             use_container_width=True
         )
 
-    with right:
+with right:
 
-        st.subheader("📋 Applicant Summary")
+    st.markdown("""
+    <h2 style="
+    color:white;
+    margin-bottom:20px;
+    ">
+    📋 Applicant Summary
+    </h2>
+    """, unsafe_allow_html=True)
 
-        summary = pd.DataFrame({
+    fields = [
 
-            "Field": [
+        ("👤 Age", age),
+        ("🚻 Gender", sex.title()),
+        ("🏠 Housing", housing.title()),
+        ("💼 Job Level", job),
+        ("💳 Credit Amount", f"₹ {amount:,}"),
+        ("📅 Duration", f"{duration} Months"),
+        ("🎯 Purpose", purpose.title())
 
-                "Age",
-                "Gender",
-                "Housing",
-                "Job Level",
-                "Credit Amount",
-                "Duration",
-                "Purpose"
+    ]
 
-            ],
+    for label, value in fields:
 
-            "Value": [
+        st.markdown(f"""
+        <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
 
-                age,
-                sex.title(),
-                housing.title(),
-                job,
-                f"₹ {amount:,}",
-                f"{duration} Months",
-                purpose.title()
+        background:#1E293B;
 
-            ]
+        padding:14px 18px;
 
-        })
+        border-radius:12px;
 
-        st.dataframe(
-            summary,
-            hide_index=True,
-            use_container_width=True
-        )
+        margin-bottom:12px;
 
-        st.success(f"""
+        border:1px solid #334155;
 
-### Prediction Details
+        transition:0.3s;
+        ">
 
-**Confidence:** {confidence:.1f}%
+            <span style="
+            color:#CBD5E1;
+            font-size:15px;
+            ">
+            {label}
+            </span>
 
-**Model:** Random Forest
+            <span style="
+            color:white;
+            font-weight:700;
+            font-size:16px;
+            ">
+            {value}
+            </span>
 
-Prediction generated successfully.
+        </div>
+        """, unsafe_allow_html=True)
 
-""")
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div style="
+    background:linear-gradient(90deg,#14532D,#166534);
+
+    padding:22px;
+
+    border-radius:15px;
+
+    border-left:5px solid #22C55E;
+    ">
+
+    <h3 style="
+    color:#4ADE80;
+    margin-top:0;
+    ">
+    Prediction Details
+    </h3>
+
+    <p style="color:white;margin-bottom:8px;">
+    <b>Confidence:</b> {confidence:.1f}%
+    </p>
+
+    <p style="color:white;margin-bottom:8px;">
+    <b>Model:</b> Random Forest
+    </p>
+
+    <p style="color:white;margin:0;">
+    Prediction generated successfully.
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
        # ---------------------------------------------------
 # MODEL PERFORMANCE
 # ---------------------------------------------------
