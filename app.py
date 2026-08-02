@@ -374,137 +374,176 @@ if predict:
     # -------------------------
     # Result
     # -------------------------
-predict = st.button("🔍 Predict Credit Risk")
+predict = st.button(
+    "🔍 Predict Credit Risk",
+    use_container_width=True
+)
 
-if prediction == 1:
+# ---------------------------------------------------
+# PREDICTION
+# ---------------------------------------------------
 
-    result_color = "#16A34A"
-    result_icon = "🟢"
-    result_text = "GOOD CREDIT RISK"
+if predict:
 
-else:
+    input_df = pd.DataFrame({
 
-    result_color = "#DC2626"
-    result_icon = "🔴"
-    result_text = "BAD CREDIT RISK"
+        "Age": [age],
+        "Sex": [sex],
+        "Job": [job],
+        "Housing": [housing],
+        "Saving accounts": [saving],
+        "Checking account": [checking],
+        "Credit amount": [amount],
+        "Duration": [duration],
+        "Purpose": [purpose]
 
-st.markdown(f"""
-<div style="
-background:#1E293B;
-padding:25px;
-border-radius:16px;
-border-left:6px solid {result_color};
-margin-bottom:25px;
-text-align:center;
-">
+    })
 
-<h2 style="color:white;margin-bottom:10px;">
-Prediction Result
-</h2>
+    prediction = model.predict(input_df)[0]
+    probability = model.predict_proba(input_df)[0]
 
-<h1 style="
-color:{result_color};
-margin:0;
-font-size:38px;
-">
+    bad_prob = probability[0] * 100
+    good_prob = probability[1] * 100
 
-{result_icon} {result_text}
+    confidence = max(good_prob, bad_prob)
 
-</h1>
+    if prediction == 1:
 
-<p style="
-font-size:20px;
-color:#CBD5E1;
-margin-top:15px;
-">
+        result_color = "#16A34A"
+        result_icon = "🟢"
+        result_text = "GOOD CREDIT RISK"
 
-Confidence Score
+    else:
 
-</p>
+        result_color = "#DC2626"
+        result_icon = "🔴"
+        result_text = "BAD CREDIT RISK"
 
-<h1 style="
-color:white;
-font-size:48px;
-margin-top:-10px;
-">
+    # ---------------------------------------------------
+    # RESULT CARD
+    # ---------------------------------------------------
 
-{confidence:.1f}%
+    st.markdown(f"""
+    <div style="
+    background:#1E293B;
+    padding:25px;
+    border-radius:16px;
+    border-left:6px solid {result_color};
+    margin-bottom:25px;
+    text-align:center;
+    ">
 
-</h1>
+    <h2 style="color:white;margin-bottom:10px;">
+    Prediction Result
+    </h2>
 
-</div>
-""", unsafe_allow_html=True)
-    # -------------------------
-    # Dashboard
-    # -------------------------
+    <h1 style="
+    color:{result_color};
+    margin:0;
+    font-size:36px;
+    ">
+    {result_icon} {result_text}
+    </h1>
 
-left, right = st.columns([1,1])
+    <p style="
+    color:#CBD5E1;
+    font-size:18px;
+    margin-top:18px;
+    ">
+    Confidence Score
+    </p>
 
-with left:
+    <h1 style="
+    color:white;
+    font-size:46px;
+    margin-top:-10px;
+    ">
+    {confidence:.1f}%
+    </h1>
 
-    st.metric(
-        "Good Risk Probability",
-        f"{good_prob:.1f}%"
-    )
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.metric(
-        "Bad Risk Probability",
-        f"{bad_prob:.1f}%"
-    )
+    # ---------------------------------------------------
+    # DASHBOARD
+    # ---------------------------------------------------
 
-    st.progress(confidence / 100)
+    left, right = st.columns([1, 1])
 
-    fig = go.Figure(
+    with left:
 
-        data=[
+        st.metric(
+            "Good Risk Probability",
+            f"{good_prob:.1f}%"
+        )
 
-            go.Pie(
+        st.metric(
+            "Bad Risk Probability",
+            f"{bad_prob:.1f}%"
+        )
 
-                labels=[
-                    "Good Risk",
-                    "Bad Risk"
-                ],
+        st.progress(confidence / 100)
 
-                values=[
-                    good_prob,
-                    bad_prob
-                ],
+        fig = go.Figure(
 
-                hole=0.65,
+            data=[
 
-                marker=dict(
+                go.Pie(
 
-                    colors=[
-                        "#16A34A",
-                        "#B91C1C"
-                    ]
+                    labels=[
+                        "Good Risk",
+                        "Bad Risk"
+                    ],
+
+                    values=[
+                        good_prob,
+                        bad_prob
+                    ],
+
+                    hole=0.65,
+
+                    marker=dict(
+
+                        colors=[
+                            "#16A34A",
+                            "#B91C1C"
+                        ]
+
+                    )
 
                 )
 
-            )
+            ]
 
-        ]
+        )
 
-    )
+        fig.update_layout(
 
-    fig.update_layout(
-        template="plotly_dark",
-        paper_bgcolor="#0F172A",
-        font_color="white",
-        margin=dict(
-            l=20,
-            r=20,
-            t=20,
-            b=20
-        ),
-        height=360,
-        showlegend=True
-    )
+            template="plotly_dark",
 
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
+            paper_bgcolor="#0F172A",
+
+            plot_bgcolor="#0F172A",
+
+            font_color="white",
+
+            margin=dict(
+                l=20,
+                r=20,
+                t=20,
+                b=20
+            ),
+
+            height=360,
+
+            showlegend=True
+
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
 
     with right:
 
@@ -512,19 +551,19 @@ with left:
 
         summary = pd.DataFrame({
 
-            "Field":[
+            "Field": [
 
                 "Age",
                 "Gender",
                 "Housing",
-                "Job",
-                "Amount",
+                "Job Level",
+                "Credit Amount",
                 "Duration",
                 "Purpose"
 
             ],
 
-            "Value":[
+            "Value": [
 
                 age,
                 sex.title(),
@@ -539,24 +578,22 @@ with left:
         })
 
         st.dataframe(
-
             summary,
-
             hide_index=True,
-
             use_container_width=True
-
         )
 
-    st.success(
-f"""
-### Prediction Completed
+        st.success(f"""
 
-- **Confidence:** {confidence:.1f}%
-- **Model:** Random Forest
-- **Status:** Prediction Generated Successfully
-"""
-)
+### Prediction Details
+
+**Confidence:** {confidence:.1f}%
+
+**Model:** Random Forest
+
+Prediction generated successfully.
+
+""")
        # ---------------------------------------------------
 # MODEL PERFORMANCE
 # ---------------------------------------------------
