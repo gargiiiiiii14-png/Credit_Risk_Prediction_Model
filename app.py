@@ -34,6 +34,65 @@ def load_model():
 
 model = load_model()
 
+with st.sidebar:
+
+    st.image("images/logo.png", width=120)   # Optional
+
+    st.title("🏦 Credit Risk")
+
+    st.markdown("---")
+
+    st.markdown("### 📌 Project")
+
+    st.info("""
+**Machine Learning Model**
+- 🌳 Random Forest
+
+**Dataset**
+- 📊 German Credit Dataset
+
+**Records**
+- 1000 Applicants
+""")
+
+    st.markdown("---")
+
+    st.markdown("### ⚙️ Technologies")
+
+    st.markdown("""
+- 🐍 Python
+- 🤖 Scikit-Learn
+- 📊 Plotly
+- 🎨 Streamlit
+- 📑 Pandas
+""")
+
+    st.markdown("---")
+
+    st.markdown("### 📈 Model Performance")
+
+    st.metric("Accuracy", "71.0%")
+    st.metric("ROC-AUC", "65.6%")
+
+    st.markdown("---")
+
+    st.markdown("### 👩‍💻 Developer")
+
+    st.markdown("""
+**Gargi Rakshit**
+
+Aspiring Data Scientist
+""")
+
+    st.link_button(
+        "💼 LinkedIn",
+        "https://www.linkedin.com/in/gargi-rakshit-634047292/"
+    )
+
+    st.link_button(
+        "💻 GitHub",
+        "https://github.com/gargiiiiiii14-png"
+    )
 # ---------------------------------------------------
 # THEME
 # ---------------------------------------------------
