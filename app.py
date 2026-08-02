@@ -336,40 +336,7 @@ with col2:
 st.markdown("###")
 
 
-# ---------------------------------------------------
-# PREDICTION
-# ---------------------------------------------------
 
-if predict:
-
-    input_df = pd.DataFrame({
-
-        "Age":[age],
-        "Sex":[sex],
-        "Job":[job],
-        "Housing":[housing],
-        "Saving accounts":[saving],
-        "Checking account":[checking],
-        "Credit amount":[amount],
-        "Duration":[duration],
-        "Purpose":[purpose]
-
-    })
-
-    prediction = model.predict(input_df)[0]
-
-    probability = model.predict_proba(input_df)[0]
-
-    bad_prob = probability[0] * 100
-    good_prob = probability[1] * 100
-
-    confidence = max(good_prob, bad_prob)
-
-    st.markdown("---")
-
-    # -------------------------
-    # Result
-    # -------------------------
 predict = st.button(
     "🔍 Predict Credit Risk",
     use_container_width=True
