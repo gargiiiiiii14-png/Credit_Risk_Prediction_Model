@@ -584,39 +584,25 @@ if predict:
         for label, value in fields:
 
             st.markdown(f"""
-            <div style="
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
+        <div style="display:flex;
+        justify-content:space-between;
+        align-items:center;
+        background:#1E293B;
+        padding:14px 18px;
+        border-radius:12px;
+        margin-bottom:12px;
+        border:1px solid #334155;">
 
-            background:#1E293B;
+        <span style="color:#CBD5E1;font-size:15px;">
+        {label}
+        </span>
 
-            padding:14px 18px;
+        <span style="color:white;font-size:16px;font-weight:700;">
+        {value}
+        </span>
 
-            border-radius:12px;
-
-            margin-bottom:12px;
-
-            border:1px solid #334155;
-            ">
-
-            <span style="
-            color:#CBD5E1;
-            font-size:15px;
-            ">
-            {label}
-            </span>
-
-            <span style="
-            color:white;
-            font-size:16px;
-            font-weight:700;
-            ">
-            {value}
-            </span>
-
-            </div>
-            """, unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
 
