@@ -112,78 +112,66 @@ div[data-testid="metric-container"]{
 # HEADER
 # ---------------------------------------------------
 
+# ---------------------------------------------------
+# HEADER
+# ---------------------------------------------------
+
 st.markdown("""
-<div style="
-background: linear-gradient(90deg, #1F2937, #111827);
-padding:35px;
-border-radius:18px;
-border-left:6px solid #FF4B4B;
-margin-bottom:30px;
+<style>
 
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-">
+.hero-container{
+    background: linear-gradient(90deg,#1F2937,#111827);
+    padding:25px;
+    border-radius:18px;
+    border-left:6px solid #FF4B4B;
+    margin-bottom:30px;
+}
 
-<h1 class="hero-title">
+.hero-title{
+    color:white;
+    font-size:40px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.badge-container{
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+    background:#374151;
+    color:white;
+    padding:8px 18px;
+    margin:6px;
+    border-radius:25px;
+    font-size:14px;
+    font-weight:500;
+}
+
+</style>
+
+<div class="hero-container">
+
+<div class="hero-title">
 🏦 Credit Risk Prediction Dashboard
-</h1>
+</div>
 
-<p class="hero-subtitle">
-AI-Powered Loan Risk Assessment using Machine Learning
-</p>
+<div class="badge-container">
 
-<div style="
-width:75%;
-height:1px;
-background:#374151;
-margin-bottom:20px;
-"></div>
+<span class="badge">🤖 Random Forest</span>
 
-<div style="
-display:flex;
-justify-content:center;
-align-items:center;
-flex-wrap:wrap;
-gap:12px;
-">
+<span class="badge">📊 German Credit Dataset</span>
 
-<span style="
-background:#374151;
-padding:9px 18px;
-border-radius:25px;
-color:white;">
-🤖 Random Forest
-</span>
+<span class="badge">⚡ Real-Time Prediction</span>
 
-<span style="
-background:#374151;
-padding:9px 18px;
-border-radius:25px;
-color:white;">
-📊 German Credit Dataset
-</span>
-
-<span style="
-background:#374151;
-padding:9px 18px;
-border-radius:25px;
-color:white;">
-⚡ Real-Time Prediction
-</span>
-
-<span style="
-background:#374151;
-padding:9px 18px;
-border-radius:25px;
-color:white;">
-🚀 Live Deployment
-</span>
+<span class="badge">🚀 Live Deployment</span>
 
 </div>
 
 </div>
+
 """, unsafe_allow_html=True)
 c1, c2, c3, c4 = st.columns(4)
 
