@@ -374,6 +374,8 @@ if predict:
     # -------------------------
     # Result
     # -------------------------
+predict = st.button("🔍 Predict Credit Risk")
+
 if prediction == 1:
 
     result_color = "#16A34A"
