@@ -104,9 +104,7 @@ div[data-testid="metric-container"]{
     padding:12px;
     border:1px solid #334155;
 }
-/* ===========================
-   CUSTOM DASHBOARD CARDS
-=========================== */
+
 
 .dashboard-card{
     background:#1E293B;
@@ -238,42 +236,45 @@ Intelligent Loan Risk Assessment using Machine Learning
 c1, c2, c3, c4 = st.columns(4)
 
 cards = [
-
     ("🤖", "Model", "Random Forest"),
     ("📊", "Dataset", "1000 Records"),
     ("🎯", "Accuracy", "71.0%"),
-    ("📈", "ROC-AUC", "65.6%")
-
+    ("📈", "ROC-AUC", "65.6%"),
 ]
 
 for col, (icon, title, value) in zip([c1, c2, c3, c4], cards):
 
     with col:
 
-        st.markdown(f"""
-        <div class="dashboard-card">
+        st.markdown(
+            f"""
+<div class="dashboard-card">
 
-            <div style="font-size:34px;">
-                {icon}
-            </div>
+<div style="font-size:34px;">
+{icon}
+</div>
 
-            <div style="
-            color:#94A3B8;
-            font-size:15px;
-            margin-top:10px;">
-                {title}
-            </div>
+<div style="
+color:#94A3B8;
+font-size:15px;
+margin-top:10px;
+">
+{title}
+</div>
 
-            <div style="
-            color:white;
-            font-size:22px;
-            font-weight:700;
-            margin-top:8px;">
-                {value}
-            </div>
+<div style="
+color:white;
+font-size:22px;
+font-weight:700;
+margin-top:8px;
+">
+{value}
+</div>
 
-        </div>
-        """, unsafe_allow_html=True)
+</div>
+""",
+            unsafe_allow_html=True,
+        )
 
 # ---------------------------------------------------
 # APPLICANT INFORMATION
