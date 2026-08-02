@@ -116,63 +116,29 @@ div[data-testid="metric-container"]{
 # HEADER
 # ---------------------------------------------------
 
-st.markdown("""
-<style>
+# ---------------------------------------------------
+# HEADER
+# ---------------------------------------------------
 
-.hero-container{
-    background: linear-gradient(90deg,#1F2937,#111827);
-    padding:25px;
-    border-radius:18px;
-    border-left:6px solid #FF4B4B;
-    margin-bottom:30px;
-}
+st.title("🏦 Credit Risk Prediction Dashboard")
 
-.hero-title{
-    color:white;
-    font-size:40px;
-    font-weight:700;
-    text-align:center;
-    margin-bottom:20px;
-}
+st.markdown("---")
 
-.badge-container{
-    text-align:center;
-}
+b1, b2, b3, b4 = st.columns(4)
 
-.badge{
-    display:inline-block;
-    background:#374151;
-    color:white;
-    padding:8px 18px;
-    margin:6px;
-    border-radius:25px;
-    font-size:14px;
-    font-weight:500;
-}
+with b1:
+    st.info("🤖 **Random Forest**")
 
-</style>
+with b2:
+    st.info("📊 **German Credit Dataset**")
 
-<div class="hero-container">
+with b3:
+    st.info("🎯 **71% Accuracy**")
 
-<div class="hero-title">
-🏦 Credit Risk Prediction Dashboard
-</div>
+with b4:
+    st.info("🚀 **Live Demo**")
 
-<div class="badge-container">
-
-<span class="badge">🤖 Random Forest</span>
-
-<span class="badge">📊 German Credit Dataset</span>
-
-<span class="badge">⚡ Real-Time Prediction</span>
-
-<span class="badge">🚀 Live Deployment</span>
-
-</div>
-
-</div>
-
-""", unsafe_allow_html=True)
+st.markdown("")
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
