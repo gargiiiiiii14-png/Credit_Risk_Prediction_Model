@@ -54,25 +54,19 @@ st.markdown("""
     margin-bottom:15px;
     color:#F8FAFC;
 }
-
-h1{
+.hero-title{
     color:#FFFFFF;
-    font-weight:800;
+    font-size:42px;
+    font-weight:700;
     text-align:center;
+    margin:0;
 }
 
-h2{
-    color:#FFFFFF;
-}
-
-h3{
-    color:#F8FAFC;
-}
-
-.subtitle{
-    color:#E2E8F0;
-    text-align:center;
+.hero-subtitle{
+    color:#D1D5DB;
     font-size:18px;
+    text-align:center;
+    margin-top:15px;
 }
 
 .card{
@@ -132,22 +126,11 @@ align-items:center;
 justify-content:center;
 ">
 
-<h1 style="
-color:white;
-font-size:42px;
-font-weight:700;
-margin:0;
-text-align:center;
-">
+<h1 class="hero-title">
 🏦 Credit Risk Prediction Dashboard
 </h1>
 
-<p style="
-color:#D1D5DB;
-font-size:18px;
-margin:15px 0 20px 0;
-text-align:center;
-">
+<p class="hero-subtitle">
 AI-Powered Loan Risk Assessment using Machine Learning
 </p>
 
