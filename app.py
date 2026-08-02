@@ -193,7 +193,6 @@ font-size:14px;">
 
 </div>
 """, unsafe_allow_html=True)
-
 with c1:
     st.metric(
         "🤖 Model",
