@@ -503,9 +503,76 @@ m4.metric("ROC-AUC", "65.6%")
 # FOOTER
 # ---------------------------------------------------
 
+# ---------------------------------------------------
+# FOOTER
+# ---------------------------------------------------
+
 st.markdown("---")
 
-st.caption(
-    "Credit Risk Prediction Dashboard • Random Forest • German Credit Dataset"
-)
+st.markdown("""
+<div style="text-align:center; padding:20px 0;">
+
+<h4 style="margin-bottom:8px; color:white;">
+🏦 Credit Risk Prediction Dashboard
+</h4>
+
+<p style="color:#D9D9D9; font-size:15px; margin-bottom:18px;">
+Built with ❤️ using <b>Python</b>, <b>Scikit-learn</b> & <b>Streamlit</b>
+</p>
+
+<div style="margin-bottom:18px;">
+
+<span style="background:#1F2937;
+padding:8px 16px;
+border-radius:25px;
+margin:5px;
+display:inline-block;
+color:white;">
+🐍 Python
+</span>
+
+<span style="background:#1F2937;
+padding:8px 16px;
+border-radius:25px;
+margin:5px;
+display:inline-block;
+color:white;">
+🤖 Machine Learning
+</span>
+
+<span style="background:#1F2937;
+padding:8px 16px;
+border-radius:25px;
+margin:5px;
+display:inline-block;
+color:white;">
+📊 Streamlit
+</span>
+
+</div>
+
+<p style="margin-bottom:15px;">
+
+<a href="https://github.com/gargiiiiiii14-png"
+style="text-decoration:none; color:#4EA8FF; font-weight:bold;"
+target="_blank">
+GitHub
+</a>
+
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+
+<a href="https://www.linkedin.com/in/gargi-rakshit-634047292/"
+style="text-decoration:none; color:#4EA8FF; font-weight:bold;"
+target="_blank">
+LinkedIn
+</a>
+
+</p>
+
+<p style="color:#8F8F8F; font-size:13px;">
+© 2026 Gargi Rakshit
+</p>
+
+</div>
+""", unsafe_allow_html=True)
 
