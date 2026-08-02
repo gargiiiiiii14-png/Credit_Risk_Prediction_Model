@@ -117,53 +117,107 @@ div[data-testid="metric-container"]{
 # ---------------------------------------------------
 # HEADER
 # ---------------------------------------------------
+# ---------------------------------------------------
+# HERO BANNER
+# ---------------------------------------------------
 
 st.markdown("""
 <style>
-.hero-box{
-    background: linear-gradient(90deg,#1F2937,#111827);
-    padding:25px;
-    border-radius:18px;
-    border-left:6px solid #FF4B4B;
-    margin-bottom:25px;
+
+.hero{
+    background:linear-gradient(135deg,#111827,#1F2937);
+    padding:35px;
+    border-radius:20px;
+    border:1px solid #374151;
+    box-shadow:0px 8px 20px rgba(0,0,0,0.35);
+    margin-bottom:30px;
 }
+
+.hero-icon{
+    text-align:center;
+    font-size:52px;
+}
+
+.hero-title{
+    text-align:center;
+    color:white;
+    font-size:38px;
+    font-weight:700;
+    margin-top:8px;
+    margin-bottom:8px;
+}
+
+.hero-subtitle{
+    text-align:center;
+    color:#CBD5E1;
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.hero-divider{
+    width:70%;
+    height:1px;
+    background:#475569;
+    margin:auto;
+    margin-bottom:20px;
+}
+
+.hero-chip{
+    display:inline-block;
+    background:#334155;
+    color:white;
+    padding:8px 18px;
+    border-radius:25px;
+    margin:6px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.chip-container{
+    text-align:center;
+}
+
 </style>
+
+<div class="hero">
+
+<div class="hero-icon">
+🏦
+</div>
+
+<div class="hero-title">
+Credit Risk Prediction Dashboard
+</div>
+
+<div class="hero-subtitle">
+Intelligent Loan Risk Assessment using Machine Learning
+</div>
+
+<div class="hero-divider"></div>
+
+<div class="chip-container">
+
+<span class="hero-chip">
+🤖 Random Forest
+</span>
+
+<span class="hero-chip">
+📊 German Credit Dataset
+</span>
+
+<span class="hero-chip">
+🎯 71.0% Accuracy
+</span>
+
+<span class="hero-chip">
+🚀 Live Deployment
+</span>
+
+</div>
+
+</div>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="hero-box">', unsafe_allow_html=True)
-
-st.markdown(
-    "<h1 style='text-align:center; color:white; margin-bottom:20px;'>🏦 Credit Risk Prediction Dashboard</h1>",
-    unsafe_allow_html=True
-)
-
-b1, b2, b3, b4 = st.columns(4)
-
-with b1:
-    st.markdown(
-        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>🤖 Random Forest</div>",
-        unsafe_allow_html=True,
-    )
-
-with b2:
-    st.markdown(
-        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>📊 German Credit Dataset</div>",
-        unsafe_allow_html=True,
-    )
-
-with b3:
-    st.markdown(
-        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>🎯 71% Accuracy</div>",
-        unsafe_allow_html=True,
-    )
-
-with b4:
-    st.markdown(
-        "<div style='text-align:center;background:#374151;padding:10px;border-radius:25px;'>🚀 Live Demo</div>",
-        unsafe_allow_html=True,
-    )
-
-st.markdown("</div>", unsafe_allow_html=True)
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
