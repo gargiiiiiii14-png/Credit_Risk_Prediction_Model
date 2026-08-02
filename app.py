@@ -276,6 +276,8 @@ margin-top:8px;
             unsafe_allow_html=True,
         )
 
+st.markdown("<div style='height:35px;'></div>", unsafe_allow_html=True)
+
 # ---------------------------------------------------
 # APPLICANT INFORMATION
 # ---------------------------------------------------
