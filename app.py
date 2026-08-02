@@ -124,15 +124,20 @@ background: linear-gradient(90deg, #1F2937, #111827);
 padding:35px;
 border-radius:18px;
 border-left:6px solid #FF4B4B;
-margin-bottom:25px;
-text-align:center;
+margin-bottom:30px;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 ">
 
 <h1 style="
 color:white;
-margin-bottom:10px;
 font-size:42px;
 font-weight:700;
+margin:0;
+text-align:center;
 ">
 🏦 Credit Risk Prediction Dashboard
 </h1>
@@ -140,16 +145,18 @@ font-weight:700;
 <p style="
 color:#D1D5DB;
 font-size:18px;
-margin-bottom:20px;
+margin:15px 0 20px 0;
+text-align:center;
 ">
 AI-Powered Loan Risk Assessment using Machine Learning
 </p>
 
-<hr style="
-border:1px solid #374151;
-margin:20px auto;
-width:70%;
-">
+<div style="
+width:75%;
+height:1px;
+background:#374151;
+margin-bottom:20px;
+"></div>
 
 <div style="
 display:flex;
@@ -163,9 +170,7 @@ gap:12px;
 background:#374151;
 padding:9px 18px;
 border-radius:25px;
-color:white;
-font-size:14px;
-font-weight:500;">
+color:white;">
 🤖 Random Forest
 </span>
 
@@ -173,9 +178,7 @@ font-weight:500;">
 background:#374151;
 padding:9px 18px;
 border-radius:25px;
-color:white;
-font-size:14px;
-font-weight:500;">
+color:white;">
 📊 German Credit Dataset
 </span>
 
@@ -183,9 +186,7 @@ font-weight:500;">
 background:#374151;
 padding:9px 18px;
 border-radius:25px;
-color:white;
-font-size:14px;
-font-weight:500;">
+color:white;">
 ⚡ Real-Time Prediction
 </span>
 
@@ -193,9 +194,7 @@ font-weight:500;">
 background:#374151;
 padding:9px 18px;
 border-radius:25px;
-color:white;
-font-size:14px;
-font-weight:500;">
+color:white;">
 🚀 Live Deployment
 </span>
 
@@ -203,8 +202,6 @@ font-weight:500;">
 
 </div>
 """, unsafe_allow_html=True)
-""", unsafe_allow_html=True)
-
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
